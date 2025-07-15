@@ -1,3 +1,5 @@
+from backend.Constants import BusinessDatabase
+from backend.handler import listen_for_json_updates
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, EmailStr,HttpUrl
 import os
@@ -7,6 +9,9 @@ from requests_oauthlib import OAuth1
 from email.message import EmailMessage
 import smtplib
 
+
+businessDb = BusinessDatabase()
+listen_for_json_updates('./fromFront.json', './fromBack.json', businessDb)
 
 app = FastAPI()
 
